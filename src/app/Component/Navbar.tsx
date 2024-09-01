@@ -12,7 +12,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="flex items-center justify-between lg:justify-center py-4 px-6 lg:px-12 relative navbar-font">
+    <nav className="flex items-center justify-between lg:justify-center py-4 px-6 lg:px-12 relative">
       <div className="flex items-center justify-between w-full lg:justify-center lg:space-x-16">
 
         {/* Logo */}

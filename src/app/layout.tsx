@@ -1,9 +1,9 @@
 import "./globals.css"
 import Navbar from "./Component/Navbar"
-import { Ubuntu } from '@next/font/google'
+import { Righteous } from '@next/font/google'
 
-const ubuntu = Ubuntu({
-  weight: ['400', '700'],
+const righteous = Righteous({
+  weight: ['400'],
   subsets: ['latin'],
   display: 'swap'
 
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className={ubuntu.className}>
+        <div className={righteous.className}>
           <Navbar />
         </div>
         {children}
