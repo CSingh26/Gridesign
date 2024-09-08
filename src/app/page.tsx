@@ -55,8 +55,11 @@ const Home = () => {
         </motion.h1>
         
         <motion.div variants={childVariants}>
-          <Link href="/" className="mt-4 px-8 py-3 bg-[#00a669] text-white rounded-full hover:bg-green-700 transition-all">
+          <Link href="/" className="relative inline-block px-8 py-3 font-medium border border-[#00a669] group">
+            <span className="absolute inset-0 w-full h-full bg-[#00a669] text-center transition-transform transform -translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 duration-300 ease-in-out"></span>
+            <span className="relative z-10 text-[#000080] group-hover:text-white text-center block transition-colors duration-300 ease-in-out">
               Read More
+            </span>
           </Link>
         </motion.div>
       </motion.div>
