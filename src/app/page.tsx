@@ -32,10 +32,20 @@ const childVariants = {
 
 const Home = () => {
   return (
-    <div className="relative flex flex-col lg:flex-row items-center justify-between min-h-screen">
+    <div className="relative flex flex-col items-center lg:flex-row justify-between min-h-screen">
+
+      <div className="relative w-full lg:w-1/2 lg:h-screen h-[50vh] lg:order-1">
+        <Image 
+          src='/assests/website-branding.png'
+          alt="Branding Image"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          className="z-0"
+        />
+      </div>
 
       <motion.div
-        className="relative z-10 flex flex-col items-start space-y-6 p-6 lg:p-24 bg-white bg-opacity-90 lg:bg-transparent lg:w-1/2 flex-shrink"
+        className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left space-y-6 p-6 lg:p-24 w-full lg:w-1/2"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -55,25 +65,18 @@ const Home = () => {
         </motion.h1>
         
         <motion.div variants={childVariants}>
-          <Link href="/" className="relative inline-block px-8 py-3 font-medium border border-[#00a669] group">
-            <span className="absolute inset-0 w-full h-full bg-[#00a669] text-center transition-transform transform -translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 duration-300 ease-in-out"></span>
-            <span className="relative z-10 text-[#000080] group-hover:text-white text-center block transition-colors duration-300 ease-in-out">
+          <Link href="/" className="relative inline-block px-6 py-2 font-medium border border-[#00a669] group transition-all duration-300 ease-in-out
+            sm:bg-[#00a669] sm:text-white sm:hover:bg-green-700 sm:hover:border-green-700
+            lg:px-8 lg:py-3 lg:border lg:border-[#00a669] lg:group lg:hover:bg-green-700 lg:hover:border-green-700
+          ">
+            
+            <span className="absolute inset-0 hidden lg:block bg-[#00a669] transition-transform transform -translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 duration-300 ease-in-out"></span>
+            <span className="relative z-10 text-[#000080] sm:text-white lg:text-[#000080] lg:group-hover:text-white transition-colors duration-300 ease-in-out">
               Read More
             </span>
           </Link>
         </motion.div>
       </motion.div>
-
-      <div className="relative w-full lg:w-1/2 lg:min-h-screen h-[50vh]">
-        <Image 
-          src='/assests/website-branding.png'
-          alt="Branding Image"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          className="z-0"
-        />
-      </div>
-      
     </div>
   )
 }
