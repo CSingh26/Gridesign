@@ -1,14 +1,21 @@
 "use client"
 
 import Image from 'next/image'
-import { useRef } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useAnimation } from 'framer-motion'
 import { FaPaintBrush, FaBriefcase, FaFileAlt, FaCamera, FaBullhorn, FaHeart } from 'react-icons/fa'
 import Link from 'next/link'
 
+import ExpertiseSection from './Component/ExpertiseSection'
+import Testimonials from './Component/Testimonial'
+
+
 // Motion variants for the container
 const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { 
+    opacity: 0, 
+    y: 50 
+  },
   visible: {
     opacity: 1,
     y: 0,
@@ -16,52 +23,99 @@ const containerVariants = {
       type: 'spring',
       stiffness: 60,
       damping: 12,
-      staggerChildren: 0.5,
+      staggerChildren: 0.9,
     },
   },
 }
 
 // Motion variants for child elements
 const childVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { 
+    opacity: 0, 
+    y: 50 
+  },
   visible: { 
     opacity: 1,
     y: 0,
     transition: { 
-      duration: 1, 
+      duration: 1.3, 
       ease: "easeOut" 
     } 
   },
 }
 
-// Updated motion variants for card hover effect
 const hoverCardVariants = {
-  hidden: { opacity: 1, scale: 1 },
-  visible: {
-    opacity: 1,
+  initial: { 
+    scale: 1 
+  },
+  hover: {
     scale: 1.05,
     transition: {
       duration: 0.3,
-      ease: "easeInOut"
+      ease: 'easeInOut'
     }
   }
 }
 
-const Home = () => {
-  // Reference to the card section
-  const featuresSectionRef = useRef<HTMLDivElement | null>(null)
-
-  // Function to scroll down to the card section
-  const scrollToSection = () => {
-    if (featuresSectionRef.current) {
-      featuresSectionRef.current.scrollIntoView({ behavior: 'smooth' })
-    }
+// Motion variants for child elements (icon and text)
+const childHoverVariants = {
+  initial: { 
+    opacity: 1, 
+    y: 0 
+  },
+  hover: {
+    y: -5, // Slight lift on hover
+    transition: { duration: 0.3, ease: 'easeInOut' }
   }
+}
+
+const Home = () => {
+  // Reference to the sections for animations
+  const featuresSectionRef = useRef<HTMLDivElement | null>(null)
+  const servicesSectionRef = useRef<HTMLDivElement | null>(null)
+  const heroSectionRef = useRef<HTMLDivElement | null>(null)
+
+  // State to track whether the animations have already triggered
+  const [hasAnimatedServices, setHasAnimatedServices] = useState(false)
+  const [hasAnimatedHero, setHasAnimatedHero] = useState(false)
+
+  useEffect(() => {
+    const servicesObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimatedServices) {
+          setHasAnimatedServices(true)
+          servicesObserver.disconnect()
+        }
+      })
+    })
+
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimatedHero) {
+          setHasAnimatedHero(true)
+          heroObserver.disconnect()
+        }
+      })
+    })
+
+    if (servicesSectionRef.current) {
+      servicesObserver.observe(servicesSectionRef.current)
+    }
+
+    if (heroSectionRef.current) {
+      heroObserver.observe(heroSectionRef.current)
+    }
+
+    return () => {
+      servicesObserver.disconnect()
+      heroObserver.disconnect()
+    }
+  }, [hasAnimatedServices, hasAnimatedHero])
 
   return (
     <div>
       {/* Homepage Section */}
-      <div className="relative flex flex-col items-center lg:flex-row justify-between min-h-screen">
+      <div ref={heroSectionRef} className="relative flex flex-col items-center lg:flex-row justify-between min-h-screen">
         {/* Image */}
         <div className="relative w-full lg:w-1/2 lg:h-screen h-[50vh] lg:order-1">
           <Image 
@@ -78,7 +132,7 @@ const Home = () => {
           className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left space-y-6 p-6 lg:p-24 w-full lg:w-1/2"
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={hasAnimatedHero ? "visible" : "hidden"}
         >
           <motion.p
             className="text-lg lg:text-xl text-gray-500 leading-relaxed"
@@ -96,7 +150,7 @@ const Home = () => {
           
           <motion.div variants={childVariants}>
             <button 
-              onClick={scrollToSection} 
+              onClick={() => featuresSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
               className="relative inline-block px-6 py-2 font-medium border border-[#00a669] group transition-all duration-300 ease-in-out
               sm:bg-[#00a669] sm:text-white sm:hover:bg-green-700 sm:hover:border-green-700
               lg:px-8 lg:py-3 lg:border lg:border-[#00a669] lg:group lg:hover:bg-green-700 lg:hover:border-green-700
@@ -122,8 +176,8 @@ const Home = () => {
             <motion.div 
               key={index}
               className="relative group overflow-hidden border border-gray-200 rounded-lg shadow-lg cursor-pointer"
-              initial="hidden"
-              whileHover="visible"
+              initial="initial"
+              whileHover="hover"
               variants={hoverCardVariants}
             >
               {/* Card Image */}
@@ -140,51 +194,104 @@ const Home = () => {
                 <h3 className="text-2xl font-semibold text-gray-800">{card.title}</h3>
                 <p className="text-gray-600 mt-2">{card.description}</p>
               </div>
-              
-              {/* Detailed View (Shows on Hover) */}
-              <div className="absolute inset-0 bg-white bg-opacity-90 p-6 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-gray-800 text-center mb-4">{card.details}</p>
-                <button className="px-4 py-2 bg-[#00a669] text-white rounded-full" onClick={() => alert(`${card.title} expanded`)}>
-                  Close
-                </button>
-              </div>
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Services Section */}
-      <ServicesSection />
+      <div ref={servicesSectionRef}>
+        <ServicesSection hasAnimated={hasAnimatedServices} />
+      </div>
+      <div>
+        <ExpertiseSection />
+      </div>
+      <div>
+        <Testimonials />
+      </div>
     </div>
   )
 }
 
 // Services Section Component
 const services = [
-  { title: 'Logo Design', icon: FaPaintBrush, link: '/services/logo-design' },
-  { title: 'Business Stationary', icon: FaBriefcase, link: '/services/business-stationary' },
-  { title: 'Wedding Invites', icon: FaHeart, link: '/services/wedding-invites' },
-  { title: 'Event Itineraries', icon: FaFileAlt, link: '/services/event-itineraries' },
-  { title: 'Social Media Designing', icon: FaBullhorn, link: '/services/social-media-designing' },
-  { title: 'Content Creation', icon: FaCamera, link: '/services/content-creation' },
+  {
+    title: 'Logo Design',
+    icon: FaPaintBrush,
+    link: '/services/logo-design',
+    description: 'Get a custom logo design tailored to your brand. Includes high-quality vector files, multiple revisions, and full ownership of your new logo.'
+  },
+  {
+    title: 'Business Stationary',
+    icon: FaBriefcase,
+    link: '/services/business-stationary',
+    description: 'Complete business stationary packages including letterheads, business cards, and envelopes. Perfect for making a professional impression.'
+  },
+  {
+    title: 'Wedding Invites',
+    icon: FaHeart,
+    link: '/services/wedding-invites',
+    description: 'Beautiful, personalized wedding invitations with custom designs to capture the essence of your special day.'
+  },
+  {
+    title: 'Event Itineraries',
+    icon: FaFileAlt,
+    link: '/services/event-itineraries',
+    description: 'Professional event itineraries designed to keep your guests informed and organized. Great for wedding and corporate events.'
+  },
+  {
+    title: 'Social Media Designing',
+    icon: FaBullhorn,
+    link: '/services/social-media-designing',
+    description: 'Custom social media graphics to boost your online presence and make a statement across all platforms.'
+  },
+  {
+    title: 'Content Creation',
+    icon: FaCamera,
+    link: '/services/content-creation',
+    description: 'High-quality content creation services including photography, videography, and written content to elevate your brand’s visibility.'
+  },
 ]
 
-const ServicesSection = () => {
+const ServicesSection = ({ hasAnimated }: { hasAnimated: boolean }) => {
   return (
-    <section className="py-16 px-4 lg:px-24">
+    <section className="py-16 px-4 lg:px-24"> 
       <h2 className="text-center text-4xl font-bold text-gray-800 mb-12">Services Provided</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16"
+        initial="hidden"
+        animate={hasAnimated ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
         {services.map((service, index) => (
-          <Link href={service.link} key={index}>
-            <div className="text-center p-6 hover:bg-gray-100 transition duration-300 ease-in-out cursor-pointer">
-              <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-[#000080] text-white rounded-lg shadow-md">
-                <service.icon className="text-3xl" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">{service.title}</h3>
-            </div>
-          </Link>
+          <motion.div 
+            key={index}
+            className="flex flex-col items-start text-left p-6"
+            initial="initial"
+            whileHover="hover"
+            variants={hoverCardVariants}
+          >
+            <motion.div 
+              className="w-16 h-16 mb-4 flex items-center justify-center bg-[#00a669] text-[#000080] rounded-sm shadow-md"
+              variants={childHoverVariants}
+            >
+              <service.icon className="text-3xl" />
+            </motion.div>
+            <motion.h3 
+              className="text-xl font-semibold text-gray-800 mb-2"
+              variants={childHoverVariants}
+            >
+              {service.title}
+            </motion.h3>
+            <motion.p 
+              className="text-base text-gray-600"
+              variants={childHoverVariants}
+            >
+              {service.description}
+            </motion.p>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }
