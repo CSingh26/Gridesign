@@ -8,6 +8,7 @@ import Link from 'next/link'
 
 import ExpertiseSection from './Component/ExpertiseSection'
 import Testimonials from './Component/Testimonial'
+import ContactSection from './Component/HomePageContactSection'
 
 
 // Motion variants for the container
@@ -208,6 +209,9 @@ const Home = () => {
       </div>
       <div>
         <Testimonials />
+      </div>
+      <div>
+        <ContactSection />
       </div>
     </div>
   )
