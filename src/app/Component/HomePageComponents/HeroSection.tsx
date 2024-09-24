@@ -55,11 +55,11 @@ const HeroSection = ({ heroSectionRef, hasAnimatedHero, featuresSectionRef }: { 
         animate={hasAnimatedHero ? "visible" : "hidden"}
       >
         <motion.p className="text-lg lg:text-xl text-gray-500 leading-relaxed" variants={childVariants}>
-          Team Grid Design LLP is where creativity meets craftsmanship in the world of branding, design, and more.
+          Team Grid Design is where creativity meets craftsmanship in the world of branding, design, and more.
         </motion.p>
 
         <motion.h1 className="text-4xl lg:text-6xl font-bold text-gray-800 leading-tight" variants={childVariants}>
-          Building the Next Generation of Bold Brands
+        Crafting Brands That Stand Out, Uniquely and Creatively
         </motion.h1>
 
         <motion.div variants={childVariants}>

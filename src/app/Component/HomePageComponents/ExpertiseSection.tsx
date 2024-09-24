@@ -41,10 +41,10 @@ const ExpertiseSection = () => {
   const controls = useAnimation()
 
   const expertise = [
-    { skill: 'Brand Strategy', progress: 85 },
     { skill: 'Logo Design', progress: 90 },
-    { skill: 'Social Media', progress: 80 },
-    { skill: 'Content Creation', progress: 75 }
+    { skill: 'Wedding Design', progress: 85 },
+    { skill: 'Brand and Packaging', progress: 80 },
+    { skill: 'Corperate Design', progress: 75 }
   ]
 
   // Set animation on scroll
