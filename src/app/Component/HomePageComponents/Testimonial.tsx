@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { FaCircle } from "react-icons/fa";
+import React, { useState, useEffect } from "react"
+import { FaCircle } from "react-icons/fa"
 
 // Testimonial data (8 testimonials)
 const testimonials = [
@@ -53,61 +53,61 @@ const testimonials = [
     feedback:
       "Our website and brand now truly reflect our vision, thanks to Team Grid Design LLP.",
   },
-];
+]
 
 // Function to shuffle array and select a few items
 const shuffleArray = (array: any[], numItems: number) => {
-  return array.sort(() => 0.5 - Math.random()).slice(0, numItems);
-};
+  return array.sort(() => 0.5 - Math.random()).slice(0, numItems)
+}
 
 const TestimonialSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [testimonialsPerPage, setTestimonialsPerPage] = useState(2); // Default for larger screens
-  const [testimonialsData, setTestimonialsData] = useState(testimonials); // Testimonials to display
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [testimonialsPerPage, setTestimonialsPerPage] = useState(2) // Default for larger screens
+  const [testimonialsData, setTestimonialsData] = useState(testimonials) // Testimonials to display
 
-  const totalPages = Math.ceil(testimonialsData.length / testimonialsPerPage); // Calculate total number of pages
+  const totalPages = Math.ceil(testimonialsData.length / testimonialsPerPage) // Calculate total number of pages
 
   // Auto scroll function, change slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
+      nextSlide()
+    }, 5000)
 
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+    return () => clearInterval(interval)
+  }, [currentIndex])
 
   // Function to move to the next slide
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalPages);
-  };
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalPages)
+  }
 
   // Function to check screen size and adjust number of testimonials
   useEffect(() => {
     const handleResize = () => {
-      const screenWidth = window.innerWidth;
+      const screenWidth = window.innerWidth
 
       if (screenWidth <= 768) {
         // Mobile screens (iPhone/Samsung)
-        setTestimonialsPerPage(1); // Show 1 per page
-        setTestimonialsData(shuffleArray(testimonials, 4)); // Randomize and pick 4
+        setTestimonialsPerPage(1) // Show 1 per page
+        setTestimonialsData(shuffleArray(testimonials, 4)) // Randomize and pick 4
       } else if (screenWidth <= 1024) {
         // Tablets (iPad Mini, Air)
-        setTestimonialsPerPage(1); // Show 1 per page on medium screens
-        setTestimonialsData(testimonials); // Show all testimonials
+        setTestimonialsPerPage(1) // Show 1 per page on medium screens
+        setTestimonialsData(testimonials) // Show all testimonials
       } else {
         // Desktop screens
-        setTestimonialsPerPage(2); // Show 2 per page on large screens
-        setTestimonialsData(testimonials); // Show all testimonials
+        setTestimonialsPerPage(2) // Show 2 per page on large screens
+        setTestimonialsData(testimonials) // Show all testimonials
       }
-    };
+    }
 
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Call once on mount
+    window.addEventListener("resize", handleResize)
+    handleResize() // Call once on mount
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
 
   return (
     <section className="py-16 px-2 lg:px-0 w-full overflow-x-hidden">
@@ -182,17 +182,17 @@ const TestimonialSection = () => {
       <style jsx>{`
         @media (max-width: 768px) {
           .testimonial-card {
-            padding: 1rem; /* Reduce padding */
-            font-size: 0.875rem; /* Slightly smaller font size */
+            padding: 1rem /* Reduce padding */
+            font-size: 0.875rem /* Slightly smaller font size */
           }
           .testimonial-card img {
-            width: 40px; /* Reduce avatar size */
-            height: 40px; /* Reduce avatar size */
+            width: 40px /* Reduce avatar size */
+            height: 40px /* Reduce avatar size */
           }
         }
       `}</style>
     </section>
-  );
-};
+  )
+}
 
-export default TestimonialSection;
+export default TestimonialSection

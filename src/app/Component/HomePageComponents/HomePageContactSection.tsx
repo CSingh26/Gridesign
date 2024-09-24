@@ -1,6 +1,6 @@
-import React from "react";
-import MapContainer from "./MapComponent";
-import ContactForm from "./FormComponent";
+import React from "react"
+import MapContainer from "./MapComponent"
+import ContactForm from "./FormComponent"
 
 const ContactSection = () => {
   return (
@@ -15,7 +15,7 @@ const ContactSection = () => {
         <ContactForm />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ContactSection;
+export default ContactSection

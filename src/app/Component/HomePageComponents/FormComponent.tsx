@@ -1,57 +1,57 @@
-import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import React, { useState } from "react"
+import emailjs from "emailjs-com"
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  });
+  })
 
-  const [isSent, setIsSent] = useState(false); // To handle success message
-  const [isError, setIsError] = useState(false); // To handle error message
+  const [isSent, setIsSent] = useState(false) // To handle success message
+  const [isError, setIsError] = useState(false) // To handle error message
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // Replace these with your EmailJS details
-    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
-    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string;
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
 
     if (!serviceID || !templateID || !publicKey) {
-      console.error("Missing EmailJS environment variables.");
-      return;
+      console.error("Missing EmailJS environment variables.")
+      return
     }
 
     emailjs
       .send(serviceID, templateID, formData, publicKey)
       .then(
         (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          setIsSent(true); // Show success message
-          setIsError(false); // Reset error state
+          console.log("SUCCESS!", response.status, response.text)
+          setIsSent(true) // Show success message
+          setIsError(false) // Reset error state
           // Reset form
           setFormData({
             name: "",
             email: "",
             message: "",
-          });
+          })
           setTimeout(() => {
             setIsSent(false)
           }, 5000)
         },
         (error) => {
-          console.log("FAILED...", error);
-          setIsError(true); // Show error message
-          setIsSent(false); // Reset success state
+          console.log("FAILED...", error)
+          setIsError(true) // Show error message
+          setIsSent(false) // Reset success state
         }
-      );
-  };
+      )
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -94,7 +94,7 @@ const ContactForm = () => {
         Submit
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default ContactForm;
+export default ContactForm
