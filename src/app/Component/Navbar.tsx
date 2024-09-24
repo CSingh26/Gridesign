@@ -42,7 +42,7 @@ const Navbar = () => {
 
           <div className="flex-shrink-0 lg:pr-8">
             <Link href="/">
-              <img src="/assests/Logo.png" alt="Company Logo" className='h-[7.95rem] lg:h-[9.95rem]' />
+              <img src="/assests/Logo.png" alt="Company Logo" className='h-[5rem] md:h-[7.95rem] lg:h-[9.95rem]' />
             </Link>
           </div>
 

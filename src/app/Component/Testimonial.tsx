@@ -129,23 +129,23 @@ const TestimonialSection = () => {
               <div
                 key={index}
                 className={`${
-                  testimonialsPerPage === 1 ? "w-full" : "w-1/2"
+                  testimonialsPerPage === 1 ? "w-full px-6" : "w-1/2"
                 } px-2 md:px-4 flex-shrink-0`}
                 style={{ minHeight: "200px" }} // Ensure cards have a minimum height
               >
                 <div
-                  className={`border border-gray-200 p-4 md:p-6 rounded-lg bg-white ${
+                  className={`border border-gray-200 p-3 md:p-6 rounded-lg bg-white ${
                     testimonialsPerPage === 1 ? "" : "shadow-lg"
                   } transition-all duration-[800ms] ease-in-out transform hover:scale-105 h-auto flex flex-col justify-between`}
                 >
                   {/* Inverted commas for feedback */}
-                  <p className="text-4xl md:text-6xl text-[#000080] leading-none mb-4">“</p>
+                  <p className="text-4xl md:text-6xl text-[#000080] leading-none mb-2 md:mb-4">“</p>
                   {/* Text wrap and responsive font size */}
-                  <p className="text-sm md:text-lg text-gray-600 mb-4 break-words whitespace-normal">
+                  <p className="text-sm md:text-lg text-gray-600 mb-2 md:mb-4 break-words whitespace-normal">
                     {testimonial.feedback}
                   </p>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gray-300"></div>
+                  <div className="flex items-center space-x-2 md:space-x-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-300"></div>
                     <div>
                       <h3 className="text-lg md:text-xl font-semibold text-gray-800">
                         {testimonial.name}
