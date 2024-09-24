@@ -55,7 +55,7 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h3 className="text-2xl font-bold text-[#000080]">Let's Talk</h3>
+      <h3 className="text-2xl font-bold text-[#000080]">Let&apos;s Talk</h3>
       <p className="text-[#00a669]">Let your querry flow in.</p>
 
       {isSent && <p className="text-green-500">Message sent successfully!</p>}
