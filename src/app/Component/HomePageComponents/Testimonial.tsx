@@ -112,7 +112,7 @@ const TestimonialSection = () => {
   return (
     <section className="py-16 px-2 lg:px-0 w-full overflow-x-hidden">
       {/* Centered Heading */}
-      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+      <h2 className="text-3xl md:text-5xl font-bold text-center heading mb-12">
         What Our Clients Say
       </h2>
       <div className="relative w-full mx-auto overflow-hidden">
@@ -143,16 +143,16 @@ const TestimonialSection = () => {
                   {/* Inverted commas for feedback */}
                   <p className="text-3xl md:text-6xl text-[#000080] leading-none mb-2 md:mb-4">“</p>
                   {/* Text wrap and responsive font size */}
-                  <p className="text-sm md:text-lg text-gray-600 mb-2 md:mb-4 break-words whitespace-normal overflow-hidden">
+                  <p className="text-sm md:text-lg sub-heading mb-2 md:mb-4 break-words whitespace-normal overflow-hidden">
                     {testimonial.feedback}
                   </p>
                   <div className="flex items-center space-x-2 md:space-x-4">
                     <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gray-300"></div>
                     <div>
-                      <h3 className="text-lg md:text-xl font-semibold text-gray-800">
+                      <h3 className="text-lg md:text-xl font-semibold heading">
                         {testimonial.name}
                       </h3>
-                      <p className="text-xs md:text-sm text-gray-500">
+                      <p className="text-xs md:text-sm sub-heading">
                         {testimonial.title}
                       </p>
                     </div>

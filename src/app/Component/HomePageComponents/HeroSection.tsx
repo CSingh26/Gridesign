@@ -54,11 +54,11 @@ const HeroSection = ({ heroSectionRef, hasAnimatedHero, featuresSectionRef }: { 
         initial="hidden"
         animate={hasAnimatedHero ? "visible" : "hidden"}
       >
-        <motion.p className="text-lg lg:text-xl text-gray-500 leading-relaxed" variants={childVariants}>
+        <motion.p className="text-lg lg:text-xl text-gray-500 leading-relaxed sub-heading" variants={childVariants}>
           Team Grid Design is where creativity meets craftsmanship in the world of branding, design, and more.
         </motion.p>
 
-        <motion.h1 className="text-4xl lg:text-6xl font-bold text-gray-800 leading-tight" variants={childVariants}>
+        <motion.h1 className="text-4xl lg:text-6xl font-bold text-gray-800 leading-tight heading" variants={childVariants}>
         Crafting Brands That Stand Out, Uniquely and Creatively
         </motion.h1>
 
@@ -66,11 +66,10 @@ const HeroSection = ({ heroSectionRef, hasAnimatedHero, featuresSectionRef }: { 
           <button
             onClick={handleScrollToFeatures}
             className="relative inline-block px-6 py-2 font-medium border border-[#00a669] group transition-all duration-300 ease-in-out
-            sm:bg-[#00a669] sm:text-white sm:hover:bg-green-700 sm:hover:border-green-700
-            lg:px-8 lg:py-3 lg:border lg:border-[#00a669] lg:group lg:hover:bg-green-700 lg:hover:border-green-700"
+            lg:px-8 lg:py-3 lg:border lg:border-[#00a669] lg:group lg:hover:bg-green-700 lg:group-hover:border-transparent"
           >
-            <span className="absolute inset-0 hidden lg:block bg-[#00a669] transition-transform transform -translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 duration-300 ease-in-out"></span>
-            <span className="relative z-10 text-[#000080] sm:text-white lg:text-[#000080] lg:group-hover:text-white transition-colors duration-300 ease-in-out">
+            <span className="absolute inset-0 bg-transparent border border-[#00a669] transition-transform transform -translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 duration-300 ease-in-out"></span>
+            <span className="relative z-10 text-[#00a669] heading transition-colors duration-300 ease-in-out group-hover:text-white">
               Read More
             </span>
           </button>

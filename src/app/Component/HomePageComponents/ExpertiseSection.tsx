@@ -73,8 +73,8 @@ const ExpertiseSection = () => {
       <div className="flex flex-col lg:flex-row items-start justify-between">
         {/* Left Side: Heading and Description */}
         <div className="lg:w-1/2 mb-8 lg:mb-0">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4 text-left">Expertise</h2>
-          <p className="text-lg text-gray-600 text-left">
+          <h2 className="text-5xl font-bold heading mb-4 text-left">Expertise</h2>
+          <p className="text-lg sub-heading font-extrabold text-left">
             We specialize in a range of services aimed at elevating your brand to the next level. Our expertise ensures the best outcomes tailored to your unique needs.
           </p>
         </div>
@@ -90,8 +90,8 @@ const ExpertiseSection = () => {
             <div key={index} className="flex items-center justify-between">
               <div className="w-full">
                 <div className="flex justify-between mb-2">
-                  <h3 className="text-lg font-semibold text-gray-800">{item.skill}</h3>
-                  <span className="text-lg font-semibold text-gray-800">{item.progress}%</span>
+                  <h3 className="text-lg font-semibold heading">{item.skill}</h3>
+                  <span className="text-lg font-semibold heading">{item.progress}%</span>
                 </div>
                 <div className="w-full h-4 bg-gray-200 rounded-lg">
                   <motion.div

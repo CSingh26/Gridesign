@@ -64,7 +64,7 @@ const ServicesSection = ({ hasAnimated }: { hasAnimated: boolean }) => {
 
   return (
     <section className="py-16 px-4 lg:px-24" id="services-section">
-      <h2 className="text-center text-4xl font-bold text-gray-800 mb-12">Services Provided</h2>
+      <h2 className="text-center text-5xl font-bold heading mb-12">Services Provided</h2>
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16"
         initial="hidden"
@@ -84,10 +84,10 @@ const ServicesSection = ({ hasAnimated }: { hasAnimated: boolean }) => {
             >
               <service.icon className="text-3xl" />
             </motion.div>
-            <motion.h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <motion.h3 className="text-2xl font-semibold heading mb-2">
               {service.title}
             </motion.h3>
-            <motion.p className="text-base text-gray-600">{service.description}</motion.p>
+            <motion.p className="text-base font-bold sub-heading">{service.description}</motion.p>
           </motion.div>
         ))}
       </motion.div>

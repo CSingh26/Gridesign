@@ -55,14 +55,14 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h3 className="text-2xl font-bold text-[#000080]">Let&apos;s Talk</h3>
-      <p className="text-[#00a669]">Let your querry flow in.</p>
+      <h3 className="text-4xl font-bold heading">Let&apos;s Talk</h3>
+      <p className="sub-heading">Let your querry flow in.</p>
 
       {isSent && <p className="text-green-500">Message sent successfully!</p>}
       {isError && <p className="text-red-500">Failed to send message.</p>}
 
       <input
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded sub-heading"
         type="text"
         name="name"
         placeholder="Name"
@@ -71,7 +71,7 @@ const ContactForm = () => {
         required
       />
       <input
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded sub-heading"
         type="email"
         name="email"
         placeholder="Email"
@@ -80,7 +80,7 @@ const ContactForm = () => {
         required
       />
       <textarea
-        className="w-full p-2 border rounded"
+        className="w-full p-2 border rounded sub-heading"
         name="message"
         placeholder="Message"
         value={formData.message}
