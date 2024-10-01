@@ -38,7 +38,7 @@ const AboutPage = () => {
           <FontAwesomeIcon icon={faBullseye} className="text-[#000080] text-5xl mb-4" />
           <h3 className="text-xl font-bold text-[#000080] mb-2">Mission</h3>
           <p className="text-gray-600">
-            Our mission is to combine cutting-edge technology with creative design to craft personalized, innovative solutions that not only meet but exceed our clients' expectations. We strive to make each project impactful and memorable.
+            Our mission is to combine cutting-edge technology with creative design to craft personalized, innovative solutions that not only meet but exceed our client&apos;s expectations. We strive to make each project impactful and memorable.
           </p>
         </motion.div>
 
