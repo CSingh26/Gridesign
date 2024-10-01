@@ -1,24 +1,27 @@
-import "./globals.css"
-import Navbar from "./Component/Navbar"
-import { Righteous } from '@next/font/google'
+import "./globals.css";
+import Navbar from "./Component/Navbar";
+import Loader from "./Component/loading"; // Import the loader component
+import { Righteous } from "@next/font/google";
 
 const righteous = Righteous({
-  weight: ['400'],
-  subsets: ['latin'],
-  display: 'swap',
-})
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata = {
   title: "Team Grid Design - Crafting Innovative Solutions",
-  description: "At Team Grid Design LLP, we blend creativity with craftsmanship to deliver exceptional branding, design, wedding stationery, and event design services. From conceptualization to execution, we craft experiences that leave a lasting impression. Specializing in corporate branding, weddings, and integrated printing services, we are your ultimate destination for impactful designs and video animations.",
-  keywords: "Team Grid Design LLP, branding, design, wedding stationery, event design, corporate branding, printing services, video animations, creative services, branding agency, design firm, event planning",
+  description:
+    "At Team Grid Design LLP, we blend creativity with craftsmanship to deliver exceptional branding, design, wedding stationery, and event design services. From conceptualization to execution, we craft experiences that leave a lasting impression. Specializing in corporate branding, weddings, and integrated printing services, we are your ultimate destination for impactful designs and video animations.",
+  keywords:
+    "Team Grid Design LLP, branding, design, wedding stationery, event design, corporate branding, printing services, video animations, creative services, branding agency, design firm, event planning",
   author: "Team Grid Design",
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -29,11 +32,14 @@ export default function RootLayout({
         <title>{metadata.title}</title>
       </head>
       <body className={righteous.className}>
+        <Loader />
+
         <Navbar />
+
         <div className="relative">
           {children}
-      </div>
+        </div>
       </body>
     </html>
-  )
+  );
 }

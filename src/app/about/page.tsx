@@ -7,7 +7,7 @@ import { faEye, faBullseye, faMedal } from '@fortawesome/free-solid-svg-icons';
 
 const AboutPage = () => {
   return (
-    <div className="pt-[120px] grid-backdrop"> {/* Apply grid-backdrop class here */}
+    <div className="pt-[120px] grid-backdrop">
       {/* About Us Heading */}
       <div className="relative pt-24">
         <h1 className="text-center text-5xl font-bold text-[#000080]">About Us</h1>
@@ -52,6 +52,77 @@ const AboutPage = () => {
           <p className="text-gray-600">
             Over the years, we’ve partnered with numerous high-profile clients and delivered outstanding branding solutions that have been recognized globally. Our dedication has earned us accolades in design and event curation.
           </p>
+        </motion.div>
+      </section>
+
+      {/* Separation Heading */}
+      <div className="py-16">
+        <h2 className="text-center text-4xl font-bold text-[#000080]">Meet Our Team & Our Story</h2>
+        <p className="text-center text-lg text-gray-600 mt-4">
+          Get to know the person behind the brand and learn about the roots of Grid Design.
+        </p>
+      </div>
+
+      {/* Person Behind the Company Section */}
+      <section className="py-16 px-4 lg:px-24 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+        {/* Image */}
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <img
+            src="/assets/person.jpg"
+            alt="Person Behind the Company"
+            className="rounded-lg shadow-lg max-w-[90%] lg:max-w-full"
+          />
+        </motion.div>
+
+        {/* Content */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-3xl font-bold text-[#000080] mb-4">Purva Singh</h2>
+          <p className="text-lg text-gray-600">
+          Meet Purva, the visionary founder of Team Grid Design. A BBA graduate with certifications in graphic design and 2D animation, 
+          Purva has spent the last six years transforming brands and weddings with her creative expertise. From global exhibitions to 
+          personalized wedding designs, her work spans a diverse clientele across the world. Driven by passion and dedication, 
+          Purva is committed to elevating her company, blending artistry with leadership. Beyond her professional achievements, 
+          she enjoys music, dance, writing, and culinary arts, all while drawing strength from her family and friends. 
+          Welcome to Team Grid Design, where Purva makes dreams a reality.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Company Introduction Section */}
+      <section className="py-16 px-4 lg:px-24 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+        {/* Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-3xl font-bold text-[#000080] mb-4">Our Roots</h2>
+          <p className="text-lg text-gray-600">
+            Grid Design was founded with the vision of transforming how brands interact with their audiences. Starting as a small creative studio, we have grown into a full-service design firm, providing innovative solutions for branding, web design, and digital marketing. Our commitment to excellence and passion for design has earned us a reputation as one of the top design agencies globally.
+          </p>
+        </motion.div>
+
+        {/* Image */}
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <img
+            src="/assets/company.jpg"
+            alt="Company Roots"
+            className="rounded-lg shadow-lg max-w-[90%] lg:max-w-full"
+          />
         </motion.div>
       </section>
     </div>
