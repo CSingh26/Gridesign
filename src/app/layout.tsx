@@ -30,7 +30,9 @@ export default function RootLayout({
       </head>
       <body className={righteous.className}>
         <Navbar />
-        {children}
+        <div className="relative">
+          {children}
+      </div>
       </body>
     </html>
   )

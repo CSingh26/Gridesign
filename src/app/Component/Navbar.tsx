@@ -8,7 +8,6 @@ import { FaEnvelope, FaPhoneAlt, FaBars, FaTimes, FaCaretDown, FaInstagram, FaLi
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -23,6 +22,7 @@ const Navbar = () => {
       }
     }
 
+    // Trigger scroll detection when the page loads
     handleScroll(); 
     window.addEventListener('scroll', handleScroll)
 
@@ -31,7 +31,7 @@ const Navbar = () => {
     }
   }, [])
 
-  const navbarBackground = pathname === '/' && !isScrolled 
+  const navbarBackground = !isScrolled 
     ? 'bg-transparent'
     : 'bg-white shadow-md'
 

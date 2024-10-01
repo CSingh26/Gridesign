@@ -14,7 +14,7 @@ const hoverCardVariants = {
 const FeaturesSection = ({ featuresSectionRef }: { featuresSectionRef: any }) => {
   const features = [
     { title: 'Vision', image: '/assests/vision.png', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { title: 'Story', image: '/assests/story.png', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+    { title: 'Mission', image: '/assests/story.png', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
     { title: 'Achievements', image: '/assests/achievements.png', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
   ]
 
