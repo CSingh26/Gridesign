@@ -2,12 +2,18 @@
 
 /* Define CSS variables for easier adjustments */
 :root {
+    /* Large screens */
     --background-size-initial: 40px;
     --background-size-intermediate: 57px;
     --background-size-final: 60px;
+    --line-width-initial: 1px;
+    --line-width-intermediate: 4px;
+    --line-width-final: 5px;
     --scale-initial: 0;
-    --scale-intermediate: 1.35;
-    --scale-final: 1.5;
+    --scale-intermediate: 0.95;
+    --scale-final: 1;
+    --grid-width: 200%;
+    --grid-height: 200%;
 }
 
 .loader-container {
@@ -25,11 +31,11 @@
 }
 
 .grid-animation {
-    width: 100vw;
-    height: 100vh;
+    width: var(--grid-width);
+    height: var(--grid-height);
     background-image:
-        linear-gradient(0deg, #00a669 1px, transparent 1px),
-        linear-gradient(90deg, #000080 1px, transparent 1px);
+        linear-gradient(0deg, #00a669 var(--line-width-initial), transparent var(--line-width-initial)),
+        linear-gradient(90deg, #000080 var(--line-width-initial), transparent var(--line-width-initial));
     background-size: var(--background-size-initial) var(--background-size-initial);
     transform: rotate(45deg) scale(var(--scale-initial));
     animation: expand 1.5s ease-in-out forwards;
@@ -41,24 +47,24 @@
         transform: rotate(45deg) scale(var(--scale-initial));
         background-size: var(--background-size-initial) var(--background-size-initial);
         background-image:
-            linear-gradient(0deg, #00a669 1px, transparent 1px),
-            linear-gradient(90deg, #000080 1px, transparent 1px);
+            linear-gradient(0deg, #00a669 var(--line-width-initial), transparent var(--line-width-initial)),
+            linear-gradient(90deg, #000080 var(--line-width-initial), transparent var(--line-width-initial));
     }
 
     85% {
         transform: rotate(45deg) scale(var(--scale-intermediate));
         background-size: var(--background-size-intermediate) var(--background-size-intermediate);
         background-image:
-            linear-gradient(0deg, #00a669 4px, transparent 1px),
-            linear-gradient(90deg, #000080 4px, transparent 1px);
+            linear-gradient(0deg, #00a669 var(--line-width-intermediate), transparent var(--line-width-intermediate)),
+            linear-gradient(90deg, #000080 var(--line-width-intermediate), transparent var(--line-width-intermediate));
     }
 
     100% {
         transform: rotate(45deg) scale(var(--scale-final));
         background-size: var(--background-size-final) var(--background-size-final);
         background-image:
-            linear-gradient(0deg, #00a669 5px, transparent 1px),
-            linear-gradient(90deg, #000080 5px, transparent 1px);
+            linear-gradient(0deg, #00a669 var(--line-width-final), transparent var(--line-width-final)),
+            linear-gradient(90deg, #000080 var(--line-width-final), transparent var(--line-width-final));
     }
 }
 
@@ -68,8 +74,13 @@
         --background-size-initial: 30px;
         --background-size-intermediate: 42px;
         --background-size-final: 45px;
+        --line-width-initial: 1px;
+        --line-width-intermediate: 3px;
+        --line-width-final: 4px;
         --scale-intermediate: 1.5;
         --scale-final: 1.7;
+        --grid-width: 100vw;
+        --grid-height: 100vh;
     }
 }
 
@@ -79,7 +90,12 @@
         --background-size-initial: 20px;
         --background-size-intermediate: 30px;
         --background-size-final: 35px;
+        --line-width-initial: 1px;
+        --line-width-intermediate: 2px;
+        --line-width-final: 3px;
         --scale-intermediate: 1.8;
         --scale-final: 2;
+        --grid-width: 100vw;
+        --grid-height: 100vh;
     }
 }
