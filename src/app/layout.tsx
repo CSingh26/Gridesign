@@ -1,13 +1,6 @@
 import "./globals.css";
 import Navbar from "./Component/Navbar";
-import Loader from "./Component/loading"; // Import the loader component
-import { Righteous } from "@next/font/google";
-
-const righteous = Righteous({
-  weight: ["400"],
-  subsets: ["latin"],
-  display: "swap",
-});
+import Loader from "./Component/loading"; 
 
 export const metadata = {
   title: "Team Grid Design - Crafting Innovative Solutions",
@@ -31,11 +24,9 @@ export default function RootLayout({
         <meta name="author" content={metadata.author} />
         <title>{metadata.title}</title>
       </head>
-      <body className={righteous.className}>
+      <body>
         <Loader />
-
         <Navbar />
-
         <div className="relative">
           {children}
         </div>

@@ -89,7 +89,7 @@ const ContactForm = () => {
       ></textarea>
       <button
         type="submit"
-        className="bg-[#00a669] text-white p-2 rounded w-full hover:bg-green-700"
+        className="bg-[#00a669] text-white p-2 rounded w-full hover:bg-green-700 heading"
       >
         Submit
       </button>

@@ -36,7 +36,7 @@ const Navbar = () => {
     : 'bg-white shadow-md'
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${navbarBackground}`}>
+    <nav className={`navbar-fonts fixed top-0 left-0 w-full z-50 transition-all duration-300 ${navbarBackground}`}>
       <div className="flex items-center justify-between lg:justify-center py-4 px-6 lg:px-12 relative">
         <div className="flex items-center justify-between w-full lg:justify-center lg:space-x-16">
 
