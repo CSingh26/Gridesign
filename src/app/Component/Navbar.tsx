@@ -1,39 +1,36 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { FaEnvelope, FaPhoneAlt, FaBars, FaTimes, FaCaretDown, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa'
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { FaEnvelope, FaPhoneAlt, FaBars, FaTimes, FaCaretDown, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true)
+        setIsScrolled(true);
       } else {
-        setIsScrolled(false)
+        setIsScrolled(false);
       }
-    }
+    };
 
     // Trigger scroll detection when the page loads
-    handleScroll(); 
-    window.addEventListener('scroll', handleScroll)
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-  const navbarBackground = !isScrolled 
-    ? 'bg-transparent'
-    : 'bg-white shadow-md'
+  const navbarBackground = !isScrolled ? 'bg-transparent' : 'bg-white shadow-md';
 
   return (
     <nav className={`navbar-fonts fixed top-0 left-0 w-full z-50 transition-all duration-300 ${navbarBackground}`}>
@@ -107,7 +104,8 @@ const Navbar = () => {
                     : `-translate-x-full opacity-0`
                 } hover:text-white hover:scale-110`}
               >
-                <Link href={`/${item.toLowerCase()}`} onClick={toggleMenu}>
+                {/* Fix for Home Route */}
+                <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} onClick={toggleMenu}>
                   {item}
                 </Link>
               </li>
@@ -116,7 +114,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

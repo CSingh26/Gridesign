@@ -65,6 +65,7 @@
     .loader-grid {
       width: 160px;
       height: 160px;
+      transform: translate(-80px, -50px); /* Shift the loader towards the left */
     }
   }
   
@@ -77,5 +78,6 @@
     .loader-grid {
       width: 120px;
       height: 120px;
+      transform: translate(-68px, -50px); /* Shift the loader further to the left for mobile screens */
     }
   }

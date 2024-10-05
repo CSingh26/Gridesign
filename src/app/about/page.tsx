@@ -73,9 +73,9 @@ const AboutPage = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <img
-            src="/assets/person.jpg"
+            src="/assests/person.jpg"
             alt="Person Behind the Company"
-            className="rounded-lg shadow-lg max-w-[90%] lg:max-w-full"
+            className="rounded-full shadow-lg w-96 h-96 object-cover"
           />
         </motion.div>
 
@@ -119,9 +119,9 @@ const AboutPage = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <img
-            src="/assets/company.jpg"
+            src="/assests/Logo.png"
             alt="Company Roots"
-            className="rounded-lg shadow-lg max-w-[90%] lg:max-w-full"
+            className="max-w-[70%] lg:max-w-[50%] rounded-full" /* Adjust size and remove borders */
           />
         </motion.div>
       </section>
