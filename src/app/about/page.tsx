@@ -1,55 +1,90 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import HeaderSection from "../Component/AboutPageComponents/HeaderSection"
 import InfoCard from "../Component/AboutPageComponents/InfoCardSection"
 import TeamSection from "../Component/AboutPageComponents/TeamSection"
 import RootsSection from "../Component/AboutPageComponents/RootsSection"
 
+interface InfoCardType {
+  icon: "eye" | "bullseye" | "medal";
+  title: string;
+  description: string;
+}
+
+interface TeamSectionType {
+  title: string;
+  subtitle: string;
+  personName: string;
+  description: string;
+  image: string;
+}
+
+interface RootsSectionType {
+  title: string;
+  description: string;
+  image: string;
+}
+
+interface AboutData {
+  header: {
+    title: string;
+    subtitle: string;
+  };
+  infoCards: InfoCardType[];
+  teamSection: TeamSectionType;
+  rootsSection: RootsSectionType;
+}
+
 const AboutPage = () => {
+  const [data, setData] = useState<AboutData | null>(null)
+
+  useEffect (() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/data/aboutCards.json")
+        const jsonData = await response.json()
+        setData(jsonData.about)
+      } catch (error) {
+        console.log("Error fetching the JSON data: ", error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  if (!data) return <div>Loading...</div>;
   return (
     <div className="pt-[120px] grid-backdrop">
 
-      <HeaderSection />
+      <HeaderSection 
+      title={data.header.title}
+      subtitle={data.header.subtitle}
+      />
 
       <section className="py-16 px-4 lg:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <InfoCard 
-          icon="eye"
-          title="Vision"
-          description="At Team Grid Design LLP, our vision is to be the ultimate fusion of creativity 
-          and craftsmanship in the realms of branding, design, and printing. We aim to craft not just 
-          designs, but immersive experiences that resonate and endure. Specializing in corporate and 
-          event branding, including weddings, we bring ideas to life—from concept to flawless execution. 
-          Through our precision in design and comprehensive printing services, we aspire to be the go-to 
-          destination for impactful and unforgettable creative solutions."
-        />
-        <InfoCard 
-          icon="bullseye"
-          title="Mission"
-          description="At Team Grid Design LLP, our mission is to seamlessly blend creativity with 
-          craftsmanship, transforming ideas into memorable experiences. Specializing in branding for 
-          companies, corporate events, and weddings, we are dedicated to delivering exceptional 
-          design and printing services from concept to execution. Our goal is to leave a lasting 
-          impact through innovative, detail-oriented solutions that elevate brands and captivate 
-          audiences. We are the ultimate destination for all things creative, ensuring each project 
-          reflects our commitment to excellence and perfection."
-        />
-        <InfoCard 
-          icon="medal"
-          title="Achievements"
-          description="At Team Grid Design LLP, we pride ourselves on building strong networks and 
-          delivering exceptional work on a global scale. We've had the privilege of collaborating 
-          with some of the top event companies in Ahmedabad, designing hoardings and banners for 
-          Singapore Supermarket, and handling international clients from Canada, New Zealand, 
-          and Australia. Our work also includes organizing design exhibitions for Bharat Tex at 
-          prestigious global events in Delhi, showcasing our expertise and commitment to excellence 
-          on an international stage."
-        />
+        {data.infoCards.map((card, index) => (
+          <InfoCard
+            key={index}
+            icon={card.icon}
+            title={card.title}
+            description={card.description}
+          />
+        ))}
       </section>
 
-      <TeamSection />
+      <TeamSection
+        title={data.teamSection.title}
+        subtitle={data.teamSection.subtitle}
+        personName={data.teamSection.personName}
+        description={data.teamSection.description}
+        image={data.teamSection.image}
+      />
 
-      <RootsSection />
+      <RootsSection
+        title={data.rootsSection.title}
+        description={data.rootsSection.description}
+        image={data.rootsSection.image}
+      />
 
     </div>
   )
