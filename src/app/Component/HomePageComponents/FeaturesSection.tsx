@@ -13,9 +13,21 @@ const hoverCardVariants = {
 
 const FeaturesSection = ({ featuresSectionRef }: { featuresSectionRef: any }) => {
   const features = [
-    { title: 'Vision', image: '/assests/vision.png', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { title: 'Mission', image: '/assests/story.png', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { title: 'Achievements', image: '/assests/achievements.png', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+    { 
+      title: 'Vision', 
+      image: '/assests/vision.png', 
+      description: 'We aim to be the ultimate fusion of creativity and craftsmanship, delivering impactful branding, design, and printing experiences.' 
+    },
+    { 
+      title: 'Mission', 
+      image: '/assests/story.png', 
+      description: 'Our mission is to transform ideas into memorable experiences, blending creativity with precision for exceptional design and printing services.' 
+    },
+    { 
+      title: 'Achievements', 
+      image: '/assests/achievements.png', 
+      description: 'We proudly collaborate with global clients, delivering exceptional design work, from event branding to international exhibitions.' 
+    },
   ]
 
   return (
