@@ -1,6 +1,6 @@
 import "./globals.css";
-import Navbar from "./Component/Navbar";
-import Loader from "./Component/loading"; 
+import Navbar from "./Component/NavbarComponent/Navbar";
+import Loader from "./Component/LoadingComponent/loading"; 
 
 export const metadata = {
   title: "Team Grid Design - Crafting Innovative Solutions",
