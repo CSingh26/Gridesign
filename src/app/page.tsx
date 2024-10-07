@@ -8,60 +8,93 @@ import ExpertiseSection from './Component/HomePageComponents/ExpertiseSection'
 import Testimonials from './Component/HomePageComponents/Testimonial'
 import ContactSection from './Component/HomePageComponents/HomePageContactSection'
 
+interface Service {
+  title: string
+  icon: string
+  description: string
+}
+
+interface Testimonial {
+  name: string
+  title: string
+  feedback: string
+}
+
+interface Feature {
+  title: string
+  image: string
+  description: string
+}
+
+interface HeroSectionData {
+  title: string
+  subtitle: string
+}
+
+interface Skill {
+  skill: string
+  progress: number
+}
+
+interface ExpertiseData {
+  heading: string
+  description: string
+  skills: Skill[]
+}
+
+interface HomePageData {
+  heroSection: HeroSectionData
+  services: Service[]
+  features: Feature[]
+  testimonials: {
+    heading: string
+    testimonialsList: Testimonial[]
+  }
+  expertise: ExpertiseData // Added this line
+}
+
 const Home = () => {
   const featuresSectionRef = useRef<HTMLDivElement | null>(null)
   const servicesSectionRef = useRef<HTMLDivElement | null>(null)
   const heroSectionRef = useRef<HTMLDivElement | null>(null)
 
-  const [hasAnimatedServices, setHasAnimatedServices] = useState(false)
-  const [hasAnimatedHero, setHasAnimatedHero] = useState(false)
+  const [data, setData] = useState<HomePageData | null>(null)
 
   useEffect(() => {
-    const servicesObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimatedServices) {
-          setHasAnimatedServices(true)
-          servicesObserver.disconnect()
-        }
-      })
-    })
-
-    const heroObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimatedHero) {
-          setHasAnimatedHero(true)
-          heroObserver.disconnect()
-        }
-      })
-    })
-
-    if (servicesSectionRef.current) {
-      servicesObserver.observe(servicesSectionRef.current)
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/data/homePage.json")
+        const jsonData = await response.json()
+        setData(jsonData.homepage)
+      } catch (error) {
+        console.log("Error fetching the JSON data: ", error)
+      }
     }
+    fetchData()
+  }, [])
 
-    if (heroSectionRef.current) {
-      heroObserver.observe(heroSectionRef.current)
-    }
-
-    return () => {
-      if (servicesSectionRef.current) servicesObserver.disconnect()
-      if (heroSectionRef.current) heroObserver.disconnect()
-    }
-  }, [hasAnimatedServices, hasAnimatedHero])
+  if (!data) return <div>Loading...</div>
 
   return (
     <div>
       <HeroSection
         heroSectionRef={heroSectionRef}
-        hasAnimatedHero={hasAnimatedHero}
-        featuresSectionRef={featuresSectionRef}  
+        featuresSectionRef={featuresSectionRef}
+        title={data.heroSection.title}
+        subtitle={data.heroSection.subtitle}
       />
-      <FeaturesSection featuresSectionRef={featuresSectionRef} />
+      <FeaturesSection
+        featuresSectionRef={featuresSectionRef}
+        features={data.features}
+      />
       <div ref={servicesSectionRef}>
-        <ServicesSection hasAnimated={hasAnimatedServices} />
+        <ServicesSection services={data.services} />
       </div>
-      <ExpertiseSection />
-      <Testimonials />
+      <ExpertiseSection expertise={data.expertise} /> {/* Pass expertise data here */}
+      <Testimonials
+        heading={data.testimonials.heading}
+        testimonialsList={data.testimonials.testimonialsList}
+      />
       <ContactSection />
     </div>
   )

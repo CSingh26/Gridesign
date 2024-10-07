@@ -11,25 +11,18 @@ const hoverCardVariants = {
   },
 }
 
-const FeaturesSection = ({ featuresSectionRef }: { featuresSectionRef: any }) => {
-  const features = [
-    { 
-      title: 'Vision', 
-      image: '/assests/vision.png', 
-      description: 'We aim to be the ultimate fusion of creativity and craftsmanship, delivering impactful branding, design, and printing experiences.' 
-    },
-    { 
-      title: 'Mission', 
-      image: '/assests/story.png', 
-      description: 'Our mission is to transform ideas into memorable experiences, blending creativity with precision for exceptional design and printing services.' 
-    },
-    { 
-      title: 'Achievements', 
-      image: '/assests/achievements.png', 
-      description: 'We proudly collaborate with global clients, delivering exceptional design work, from event branding to international exhibitions.' 
-    },
-  ]
+interface Feature {
+  title: string
+  image: string
+  description: string
+}
 
+interface FeaturesSectionProps {
+  featuresSectionRef: React.RefObject<HTMLDivElement>
+  features: Feature[]
+}
+
+const FeaturesSection: React.FC<FeaturesSectionProps> = ({ featuresSectionRef, features }) => {
   return (
     <div ref={featuresSectionRef} id="features-section" className="py-16 px-4 lg:px-24 mt-10">
       <h2 className="text-center text-5xl font-bold heading">Explore Our Features</h2>

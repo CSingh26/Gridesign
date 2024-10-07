@@ -5,10 +5,7 @@ import { motion, useAnimation } from 'framer-motion'
 
 // Motion variants for container and bars
 const containerVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50 
-  },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
@@ -23,29 +20,33 @@ const containerVariants = {
 
 // Bar animation with slower duration
 const barVariants = {
-  hidden: { 
-    width: '0%' 
-  },
+  hidden: { width: '0%' },
   visible: (progress: number) => ({
     width: `${progress}%`,
     transition: {
       duration: 2.5, // Slow bar animation
-      ease: 'easeInOut'
-    }
-  })
+      ease: 'easeInOut',
+    },
+  }),
 }
 
-const ExpertiseSection = () => {
+interface Skill {
+  skill: string
+  progress: number
+}
+
+interface ExpertiseProps {
+  expertise: {
+    heading: string
+    description: string
+    skills: Skill[]
+  }
+}
+
+const ExpertiseSection: React.FC<ExpertiseProps> = ({ expertise }) => {
   const [hasAnimated, setHasAnimated] = useState(false)
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const controls = useAnimation()
-
-  const expertise = [
-    { skill: 'Logo Design', progress: 90 },
-    { skill: 'Wedding Design', progress: 85 },
-    { skill: 'Brand and Packaging', progress: 80 },
-    { skill: 'Corperate Design', progress: 75 }
-  ]
 
   // Set animation on scroll
   useEffect(() => {
@@ -58,7 +59,7 @@ const ExpertiseSection = () => {
       },
       { threshold: 0.5 }
     )
-    
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current)
     }
@@ -73,9 +74,9 @@ const ExpertiseSection = () => {
       <div className="flex flex-col lg:flex-row items-start justify-between">
         {/* Left Side: Heading and Description */}
         <div className="lg:w-1/2 mb-8 lg:mb-0">
-          <h2 className="text-5xl font-bold heading mb-4 text-left">Expertise</h2>
+          <h2 className="text-5xl font-bold heading mb-4 text-left">{expertise.heading}</h2>
           <p className="text-lg sub-heading font-extrabold text-left">
-            We specialize in a range of services aimed at elevating your brand to the next level. Our expertise ensures the best outcomes tailored to your unique needs.
+            {expertise.description}
           </p>
         </div>
 
@@ -86,7 +87,7 @@ const ExpertiseSection = () => {
           animate={hasAnimated ? 'visible' : 'hidden'}
           variants={containerVariants}
         >
-          {expertise.map((item, index) => (
+          {expertise.skills.map((item, index) => (
             <div key={index} className="flex items-center justify-between">
               <div className="w-full">
                 <div className="flex justify-between mb-2">

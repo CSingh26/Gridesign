@@ -1,119 +1,81 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { FaCircle } from "react-icons/fa";
+import React, { useState, useEffect } from "react"
+import { FaCircle } from "react-icons/fa"
 
-// Testimonial data (8 testimonials)
-const testimonials = [
-  {
-    name: "John Doe",
-    title: "CEO, Example Co.",
-    feedback:
-      "Team Grid Design LLP transformed our brand into something truly exceptional. Their work ethic is amazing!",
-  },
-  {
-    name: "Jane Smith",
-    title: "Founder, Creative Studio",
-    feedback:
-      "Their design skills are top-notch. They helped us create a logo that resonates with our audience.",
-  },
-  {
-    name: "David Lee",
-    title: "Marketing Manager, InnovateX",
-    feedback:
-      "Working with Team Grid Design LLP was a pleasure. Their social media design really elevated our online presence.",
-  },
-  {
-    name: "Sarah Brown",
-    title: "Founder, Artisanal Crafts",
-    feedback:
-      "I absolutely love the logo they designed for me. It truly captures the essence of my brand.",
-  },
-  {
-    name: "Michael Scott",
-    title: "Manager, Dunder Mifflin",
-    feedback:
-      "Their creativity is unmatched. They delivered more than we expected, and we couldn’t be happier.",
-  },
-  {
-    name: "Emily Davis",
-    title: "Owner, Bakery Delights",
-    feedback:
-      "We saw an increase in sales after using their branding strategies. Highly recommend them!",
-  },
-  {
-    name: "Chris Evans",
-    title: "Founder, Sports Gear",
-    feedback:
-      "A fantastic team with great ideas! The designs exceeded our expectations.",
-  },
-  {
-    name: "Olivia Johnson",
-    title: "CEO, Fashion Forward",
-    feedback:
-      "Our website and brand now truly reflect our vision, thanks to Team Grid Design LLP.",
-  },
-];
+interface Testimonial {
+  name: string
+  title: string
+  feedback: string
+}
 
-// Function to shuffle array and select a few items
-const shuffleArray = (array: any[], numItems: number) => {
-  return array.sort(() => 0.5 - Math.random()).slice(0, numItems);
-};
+interface TestimonialsProps {
+  heading: string
+  testimonialsList: Testimonial[]
+}
 
-const TestimonialSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [testimonialsPerPage, setTestimonialsPerPage] = useState(2); // Default for larger screens
-  const [testimonialsData, setTestimonialsData] = useState(testimonials); // Testimonials to display
+const TestimonialSection: React.FC<TestimonialsProps> = ({ heading, testimonialsList }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [testimonialsPerPage, setTestimonialsPerPage] = useState(2) // Default for larger screens
+  const [testimonialsData, setTestimonialsData] = useState<Testimonial[]>(testimonialsList)
 
-  const totalPages = Math.ceil(testimonialsData.length / testimonialsPerPage); // Calculate total number of pages
+  // Function to shuffle array and select a few items
+  const shuffleArray = (array: any[], numItems: number) => {
+    return array
+      .slice()
+      .sort(() => 0.5 - Math.random())
+      .slice(0, numItems)
+  }
+
+  const totalPages = Math.ceil(testimonialsData.length / testimonialsPerPage) // Calculate total number of pages
 
   // Auto scroll function, change slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
+      nextSlide()
+    }, 5000)
 
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+    return () => clearInterval(interval)
+  }, [currentIndex, totalPages])
 
   // Function to move to the next slide
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalPages);
-  };
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalPages)
+  }
 
   // Function to check screen size and adjust number of testimonials
   useEffect(() => {
     const handleResize = () => {
-      const screenWidth = window.innerWidth;
+      const screenWidth = window.innerWidth
 
       if (screenWidth <= 768) {
-        // Mobile screens (iPhone/Samsung)
-        setTestimonialsPerPage(1); // Show 1 per page
-        setTestimonialsData(shuffleArray(testimonials, 4)); // Randomize and pick 4
+        // Mobile screens
+        setTestimonialsPerPage(1) // Show 1 per page
+        setTestimonialsData(shuffleArray(testimonialsList, 4)) // Randomize and pick 4
       } else if (screenWidth >= 820 && screenWidth <= 1366) {
-        // Tablets (iPad Air, Pro)
-        setTestimonialsPerPage(1); // Show 1 per page on medium screens
-        setTestimonialsData(testimonials.slice(0, 5)); // Show first 5 testimonials
+        // Tablets
+        setTestimonialsPerPage(1) // Show 1 per page
+        setTestimonialsData(testimonialsList.slice(0, 5)) // Show first 5 testimonials
       } else {
         // Desktop screens
-        setTestimonialsPerPage(2); // Show 2 per page on large screens
-        setTestimonialsData(testimonials); // Show all testimonials
+        setTestimonialsPerPage(2) // Show 2 per page
+        setTestimonialsData(testimonialsList) // Show all testimonials
       }
-    };
+    }
 
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Call once on mount
+    window.addEventListener("resize", handleResize)
+    handleResize() // Call once on mount
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [testimonialsList])
 
   return (
     <section className="py-16 px-2 lg:px-0 w-full overflow-x-hidden">
       {/* Centered Heading */}
       <h2 className="text-3xl md:text-5xl font-bold text-center heading mb-12">
-        What Our Clients Say
+        {heading}
       </h2>
       <div className="relative w-full mx-auto overflow-hidden">
         {/* Testimonial Cards */}
@@ -122,7 +84,7 @@ const TestimonialSection = () => {
             className="flex transition-transform duration-[800ms] ease-in-out"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
-              width: `${totalPages * 100}%`, // Ensure width of container holds all testimonials
+              width: `${totalPages * 100}%`,
             }}
           >
             {testimonialsData.map((testimonial, index) => (
@@ -131,13 +93,13 @@ const TestimonialSection = () => {
                 className={`${
                   testimonialsPerPage === 1 ? "w-full px-4" : "w-1/2"
                 } px-2 md:px-4 flex-shrink-0`}
-                style={{ minHeight: "180px" }} // Adjust card height for small screens
+                style={{ minHeight: "180px" }}
               >
                 <div
                   className={`border border-gray-200 p-3 md:p-6 rounded-lg bg-white shadow-md transition-all duration-[800ms] ease-in-out transform hover:scale-105 h-auto flex flex-col justify-between`}
                   style={{
-                    maxWidth: "100%", // Ensure the card doesn't overflow
-                    wordBreak: "break-word", // Ensure the text breaks to the next line if needed
+                    maxWidth: "100%",
+                    wordBreak: "break-word",
                   }}
                 >
                   {/* Inverted commas for feedback */}
@@ -177,33 +139,8 @@ const TestimonialSection = () => {
           ))}
         </div>
       </div>
-
-      {/* Media queries for different screen sizes */}
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .testimonial-card {
-            padding: 1rem; /* Reduce padding */
-            font-size: 0.875rem; /* Slightly smaller font size */
-          }
-          .testimonial-card img {
-            width: 40px; /* Reduce avatar size */
-            height: 40px; /* Reduce avatar size */
-          }
-        }
-
-        @media (min-width: 820px) and (max-width: 1366px) {
-          .testimonial-card {
-            padding: 1rem; /* Reduce padding for iPads */
-            font-size: 0.9rem; /* Adjust font size */
-          }
-          .testimonial-card img {
-            width: 50px; /* Adjust avatar size */
-            height: 50px;
-          }
-        }
-      `}</style>
     </section>
-  );
-};
+  )
+}
 
-export default TestimonialSection;
+export default TestimonialSection
