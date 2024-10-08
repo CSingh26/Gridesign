@@ -47,7 +47,6 @@ const Navbar = () => {
             <li><Link href="/">Home</Link></li>
             <li><Link href="/about">About</Link></li>
             <li><Link href="/services">Services</Link></li>
-            <li><Link href="/portfolio">Portfolio</Link></li>
             <li className="relative group">
               <button className="flex items-center space-x-1 lg:space-x-2">
                 Contact

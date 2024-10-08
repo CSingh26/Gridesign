@@ -44,7 +44,7 @@
       },
       {
         "title": "Mission",
-        "image": "/assests/story.png",
+        "image": "/assests/mission.png",
         "description": "Our mission is to transform ideas into memorable experiences, blending creativity with precision for exceptional design and printing services."
       },
       {
@@ -57,50 +57,50 @@
       "heading": "What Our Clients Say",
       "testimonialsList": [
         {
-          "name": "John Doe",
-          "title": "CEO, Example Co.",
+          "name": "Ankit Bundela",
+          "title": "Owner, Inventive Pages",
           "feedback": "Team Grid Design LLP transformed our brand into something truly exceptional. Their work ethic is amazing!"
         },
         {
-          "name": "Jane Smith",
-          "title": "Founder, Creative Studio",
+          "name": "Hetna Bundela",
+          "title": "Founder, KidSpree",
           "feedback": "Their design skills are top-notch. They helped us create a logo that resonates with our audience."
         },
         {
-          "name": "David Lee",
-          "title": "Marketing Manager, InnovateX",
+          "name": "Amiha Agro ",
+          "title": "Amiha Agro Pvt Ltd",
           "feedback": "Working with Team Grid Design LLP was a pleasure. Their social media design really elevated our online presence."
         },
         {
-          "name": "Sarah Brown",
-          "title": "Founder, Artisanal Crafts",
+          "name": "Hardik Shah",
+          "title": "Director, DND Architects",
           "feedback": "I absolutely love the logo they designed for me. It truly captures the essence of my brand."
         },
         {
-          "name": "Michael Scott",
-          "title": "Manager, Dunder Mifflin",
+          "name": "Pooja Shah",
+          "title": "Founder, Shilpagya",
           "feedback": "Their creativity is unmatched. They delivered more than we expected, and we couldn’t be happier."
         },
         {
-          "name": "Emily Davis",
-          "title": "Owner, Bakery Delights",
+          "name": "Heti Verma",
+          "title": "Nutritionist-Registered Dietician, Nutritive Roots",
           "feedback": "We saw an increase in sales after using their branding strategies. Highly recommend them!"
         },
         {
-          "name": "Chris Evans",
-          "title": "Founder, Sports Gear",
+          "name": "Viral Gandhi",
+          "title": "Author",
           "feedback": "A fantastic team with great ideas! The designs exceeded our expectations."
         },
         {
-          "name": "Olivia Johnson",
-          "title": "CEO, Fashion Forward",
+          "name": "Greysha Shah",
+          "title": "Baker, WeBake4U",
           "feedback": "Our website and brand now truly reflect our vision, thanks to Team Grid Design LLP."
         }
       ]
     },
     "expertise": {
       "heading": "Expertise",
-      "description": "We specialize in a range of services aimed at elevating your brand to the next level. Our expertise ensures the best outcomes tailored to your unique needs.",
+      "description": "We specialize in a comprehensive range of services aimed at elevating your brand to the next level. Our expertise spans from innovative logo design and elegant business stationery to captivating wedding invites, strategic social media designs, and compelling content writing. We combine creativity with precision to deliver solutions that are tailored to your unique needs and goals. Our dedicated team ensures the best outcomes by understanding your vision and transforming it into impactful designs and narratives that resonate with your target audience. Let us help you stand out in the marketplace with services that not only meet but exceed your expectations.",
       "skills": [
         { "skill": "Logo Design", "progress": 90 },
         { "skill": "Wedding Design", "progress": 85 },
