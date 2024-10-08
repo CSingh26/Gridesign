@@ -8,48 +8,48 @@
       {
         "title": "Logo Design",
         "icon": "FaPaintBrush",
-        "description": "At Team Grid Design LLP, logo design is at the heart of what we do. We believe a logo is more than just a symbol; it’s the face of your brand. Our team specializes in creating unique, impactful logos that capture the essence of your business and leave a lasting impression. Whether you're a startup or an established brand, we craft logos that not only stand out but also tell your story with creativity and precision. Let us help you make your mark with a logo that speaks volumes."
+        "description": "Make your mark with a unique, impactful logo that speaks volumes about your brand."
       },
       {
         "title": "Business Stationery",
         "icon": "FaBriefcase",
-        "description": "At Team Grid Design LLP, we excel in creating premium business stationery that reflects your brand’s identity with professionalism and style. From letterheads and business cards to envelopes and notepads, our designs are crafted to leave a lasting impression. We combine creativity with functionality, ensuring that every piece of stationery not only looks exceptional but also enhances your brand’s communication. Let us help you make your mark with sophisticated and memorable business stationery."
+        "description": "Elevate your communication with sophisticated, memorable stationery reflecting professionalism and style."
       },
       {
         "title": "Wedding Invites",
         "icon": "FaHeart",
-        "description": "At Team Grid Design LLP, wedding design is a labor of love. As a creative agency, we thrive on blending patterns, colors, and innovative designs to create unforgettable experiences. From elegant invitations to stunning decor concepts, every detail is thoughtfully crafted to reflect the unique personality of each couple. We are passionate about turning wedding dreams into reality, making every celebration as memorable and beautiful as the love it represents."
+        "description": "Make your special day unforgettable with beautifully crafted, elegant, and dreamy wedding invitations."
       },
       {
         "title": "Event Itineraries",
         "icon": "FaFileAlt",
-        "description": "Professional event itineraries designed to keep your guests informed and organized. Great for weddings and corporate events."
+        "description": "Turn wedding dreams into reality with designs that capture the essence of your unique love story."
       },
       {
         "title": "Social Media Designing",
         "icon": "FaBullhorn",
-        "description": "Custom social media graphics to boost your online presence and make a statement across all platforms."
+        "description": "Transform your online presence with visually captivating, strategic designs that engage and resonate."
       },
       {
         "title": "Content Creation",
         "icon": "FaCamera",
-        "description": "High-quality content creation services including photography, videography, and written content to elevate your brand’s visibility."
+        "description": "Shape your brand’s identity with compelling content tailored to your unique voice and goals."
       }
     ],
     "features": [
       {
         "title": "Vision",
-        "image": "/assets/vision.png",
+        "image": "/assests/vision.png",
         "description": "We aim to be the ultimate fusion of creativity and craftsmanship, delivering impactful branding, design, and printing experiences."
       },
       {
         "title": "Mission",
-        "image": "/assets/story.png",
+        "image": "/assests/story.png",
         "description": "Our mission is to transform ideas into memorable experiences, blending creativity with precision for exceptional design and printing services."
       },
       {
         "title": "Achievements",
-        "image": "/assets/achievements.png",
+        "image": "/assests/achievements.png",
         "description": "We proudly collaborate with global clients, delivering exceptional design work, from event branding to international exhibitions."
       }
     ],
