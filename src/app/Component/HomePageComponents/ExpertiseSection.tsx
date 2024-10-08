@@ -82,13 +82,13 @@ const ExpertiseSection: React.FC<ExpertiseProps> = ({ expertise }) => {
 
         {/* Right Side: Bars */}
         <motion.div
-          className="lg:w-1/2 space-y-8"
+          className="lg:w-1/2 space-y-8 mt-8 lg:mt-0 ml-12"
           initial="hidden"
           animate={hasAnimated ? 'visible' : 'hidden'}
           variants={containerVariants}
         >
           {expertise.skills.map((item, index) => (
-            <div key={index} className="flex items-center justify-between">
+            <div key={index} className="flex items-center justify-between"> 
               <div className="w-full">
                 <div className="flex justify-between mb-2">
                   <h3 className="text-lg font-semibold heading">{item.skill}</h3>
