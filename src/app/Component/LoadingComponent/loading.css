@@ -1,0 +1,83 @@
+/* Scoped loader-specific styles */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 9999;
+    overflow: hidden;
+  }
+  
+  .loader-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 10px;
+    width: 240px; /* Grid width */
+    height: 240px; /* Grid height */
+    position: relative;
+  }
+  
+  /* Default grid item styles */
+  .loader-grid-item {
+    width: 30px;
+    height: 30px;
+    background-color: #00a669;
+    position: absolute;
+    animation: convergeSeparate 2.5s ease-in-out forwards;
+    transform: translate(var(--x), var(--y)); /* Apply custom --x and --y variables */
+  }
+  
+  /* Alternate background color for every odd block */
+  .loader-grid-item:nth-child(odd) {
+    background-color: #000080;
+  }
+  
+  @keyframes convergeSeparate {
+    /* Starting at original position */
+    0%, 20% {
+      transform: translate(var(--x), var(--y)); /* Use custom properties for positions */
+    }
+  
+    /* Converge to the center */
+    50% {
+      transform: translate(105px, 105px); /* Converge to the center */
+    }
+  
+    /* Return to original grid positions */
+    100% {
+      transform: translate(var(--x), var(--y)); /* Return to original positions */
+    }
+  }
+  
+  /* Adding responsiveness */
+  @media (max-width: 768px) {
+    .loader-grid-item {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .loader-grid {
+      width: 160px;
+      height: 160px;
+      transform: translate(-80px, -50px); /* Shift the loader towards the left */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .loader-grid-item {
+      width: 15px;
+      height: 15px;
+    }
+  
+    .loader-grid {
+      width: 120px;
+      height: 120px;
+      transform: translate(-68px, -50px); /* Shift the loader further to the left for mobile screens */
+    }
+  }
