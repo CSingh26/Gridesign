@@ -106,20 +106,6 @@ const ServicePage: React.FC = () => {
         </p>
       </div>
 
-      {/* Overlay for background darkening */}
-      <AnimatePresence>
-        {expandedIndex !== null && (
-          <motion.div
-            className="fixed inset-0 bg-black z-10"
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={overlayVariants}
-            onClick={handleClose}
-          />
-        )}
-      </AnimatePresence>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 mb-16">
         {services.map((service, index) => {
           const IconComponent = iconMap[service.icon];
@@ -143,6 +129,90 @@ const ServicePage: React.FC = () => {
             </motion.div>
           );
         })}
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-8 w-full mb-12">
+        <div className="flex flex-col justify-center">
+          <h2 className="text-4xl font-bold heading mb-4 text-gray-500">
+            Get a Quote
+          </h2>
+          <p className="text-lg text-gray-700 sub-heading">
+            Let us know your requirements, and we’ll provide a customized quote tailored to your needs.
+          </p>
+        </div>
+
+        {/* Form Section */}
+        <div className="flex justify-center">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-md p-8 shadow-none"
+            style={{ background: "transparent" }}
+          >
+            <div className="mb-4">
+              <label className="block heading mb-2" htmlFor="name">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-lg"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block heading mb-2" htmlFor="email">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-lg"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block heading mb-2" htmlFor="service">
+                Service Required <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="service"
+                value={formData.service}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-lg"
+                required
+              >
+                <option value="" className="sub-heading">Select a service</option>
+                {services.map((service, index) => (
+                  <option key={index} value={service.title}>
+                    {service.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-4">
+              <label className="block heading mb-2" htmlFor="company">
+                Company Name
+              </label>
+              <input
+                type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded-lg"
+              />
+            </div>
+            <button
+              type="submit"
+              className=" heading w-full bg-[#00a669] text-white py-2 px-4 rounded-lg hover:bg-[#008b54] transition duration-200"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
 
       {/* Expanded Card as a Modal */}
@@ -179,76 +249,6 @@ const ServicePage: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Get Quote Form */}
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg mt-16">
-        <h2 className="text-2xl font-bold mb-4 text-gray-700">Get a Quote</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-600 mb-2" htmlFor="name">
-              Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-600 mb-2" htmlFor="email">
-              Email <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-600 mb-2" htmlFor="service">
-              Service Required <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="service"
-              value={formData.service}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg"
-              required
-            >
-              <option value="">Select a service</option>
-              {services.map((service, index) => (
-                <option key={index} value={service.title}>
-                  {service.title}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-600 mb-2" htmlFor="company">
-              Company Name
-            </label>
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded-lg"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-[#00a669] text-white py-2 px-4 rounded-lg hover:bg-[#008b54] transition duration-200"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
     </div>
   );
 };
