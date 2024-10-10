@@ -5,7 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaPaintBrush, FaBriefcase, FaHeart, FaFileAlt, FaBullhorn, FaCamera } from "react-icons/fa";
 import { IconType } from "react-icons";
 
-// Services data
+import ServiceCard from "../Component/ServicePageComponents/serviceCard";
+import GetQuoteForm from "../Component/ServicePageComponents/serviceForm";
+
+// Complete Services Data
 const services = [
   {
     title: "Logo Design",
@@ -42,7 +45,7 @@ const services = [
     icon: "FaCamera",
     shortDescription: "Compelling content tailored to your brand’s voice and goals.",
     description: "At Team Grid Design, we understand the power of words in shaping a brand's identity. Whether you're looking to enhance your brand presence, craft compelling website copy, or engage your audience with clear, impactful content, we’ve got you covered. Our team of expert writers specializes in delivering content that not only resonates with your target audience but also drives results. From creative storytelling to SEO-optimized copy, we offer a full range of writing services tailored to your brand's unique voice and goals."
-  },
+  }
 ];
 
 // Icon map to link icon strings to components
@@ -55,20 +58,8 @@ const iconMap: { [key: string]: IconType } = {
   FaCamera: FaCamera,
 };
 
-// Overlay variants
-const overlayVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 0.5, transition: { duration: 0.3 } },
-};
-
 const ServicePage: React.FC = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    service: "",
-    company: "",
-  });
 
   const handleCardClick = (index: number) => {
     setExpandedIndex(index);
@@ -76,23 +67,6 @@ const ServicePage: React.FC = () => {
 
   const handleClose = () => {
     setExpandedIndex(null);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (formData.email && formData.name && formData.service) {
-      alert("Form submitted successfully!");
-      setFormData({ email: "", name: "", service: "", company: "" }); // Reset the form
-    } else {
-      alert("Please fill out all required fields.");
-    }
   };
 
   return (
@@ -109,24 +83,14 @@ const ServicePage: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 mb-16">
         {services.map((service, index) => {
           const IconComponent = iconMap[service.icon];
-
           return (
-            <motion.div
+            <ServiceCard
               key={index}
-              className="flex flex-col items-start text-left p-6 bg-white rounded-lg shadow-md cursor-pointer transition-transform duration-700"
-              whileHover={{ scale: 1.05 }}
+              title={service.title}
+              icon={IconComponent}
+              shortDescription={service.shortDescription}
               onClick={() => handleCardClick(index)}
-            >
-              <div className="w-16 h-16 mb-4 flex items-center justify-center bg-[#00a669] text-[#000080] rounded-sm shadow-md">
-                {IconComponent && <IconComponent className="text-3xl" />}
-              </div>
-              <h3 className="text-2xl font-semibold heading mb-2">
-                {service.title}
-              </h3>
-              <p className="text-base text-gray-600 sub-heading">
-                {service.shortDescription}
-              </p>
-            </motion.div>
+            />
           );
         })}
       </div>
@@ -140,78 +104,8 @@ const ServicePage: React.FC = () => {
             Let us know your requirements, and we’ll provide a customized quote tailored to your needs.
           </p>
         </div>
-
-        {/* Form Section */}
         <div className="flex justify-center">
-          <form
-            onSubmit={handleSubmit}
-            className="w-full max-w-md p-8 shadow-none"
-            style={{ background: "transparent" }}
-          >
-            <div className="mb-4">
-              <label className="block heading mb-2" htmlFor="name">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block heading mb-2" htmlFor="email">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-lg"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block heading mb-2" htmlFor="service">
-                Service Required <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="service"
-                value={formData.service}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-lg"
-                required
-              >
-                <option value="" className="sub-heading">Select a service</option>
-                {services.map((service, index) => (
-                  <option key={index} value={service.title}>
-                    {service.title}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="mb-4">
-              <label className="block heading mb-2" htmlFor="company">
-                Company Name
-              </label>
-              <input
-                type="text"
-                name="company"
-                value={formData.company}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-lg"
-              />
-            </div>
-            <button
-              type="submit"
-              className=" heading w-full bg-[#00a669] text-white py-2 px-4 rounded-lg hover:bg-[#008b54] transition duration-200"
-            >
-              Submit
-            </button>
-          </form>
+          <GetQuoteForm services={services.map(service => service.title)} />
         </div>
       </div>
 
