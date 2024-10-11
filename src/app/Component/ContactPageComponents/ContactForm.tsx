@@ -1,29 +1,96 @@
 "use client"
 
+import React, { useState } from "react"
+import emailjs from "emailjs-com"
+
 const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+
+  const [isSent, setIsSent] = useState(false) // To handle success message
+  const [isError, setIsError] = useState(false) // To handle error message
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    // Replace these with your EmailJS details
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
+
+    if (!serviceID || !templateID || !publicKey) {
+      console.error("Missing EmailJS environment variables.")
+      return
+    }
+
+    emailjs
+      .send(serviceID, templateID, formData, publicKey)
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text)
+          setIsSent(true) // Show success message
+          setIsError(false) // Reset error state
+          // Reset form
+          setFormData({
+            name: "",
+            email: "",
+            message: "",
+          })
+          setTimeout(() => {
+            setIsSent(false)
+          }, 5000)
+        },
+        (error) => {
+          console.log("FAILED...", error)
+          setIsError(true) // Show error message
+          setIsSent(false) // Reset success state
+        }
+      )
+  }
+
   return (
-    <form className="flex flex-col space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4">
+
+      {isSent && <p className="text-green-500">Message sent successfully!</p>}
+      {isError && <p className="text-red-500">Failed to send message.</p>}
+
       <input
+        className="w-full p-2 border rounded sub-heading"
         type="text"
+        name="name"
         placeholder="Name"
-        className="sub-heading p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#00a669]"
+        value={formData.name}
+        onChange={handleChange}
         required
       />
       <input
+        className="w-full p-2 border rounded sub-heading"
         type="email"
+        name="email"
         placeholder="Email"
-        className="sub-heading p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#00a669]"
+        value={formData.email}
+        onChange={handleChange}
         required
       />
       <textarea
+        className="w-full p-2 border rounded sub-heading"
+        name="message"
         placeholder="Message"
-        className="sub-heading p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#00a669]"
-        rows={4}
+        value={formData.message}
+        onChange={handleChange}
         required
+        rows={4}
       ></textarea>
       <button
         type="submit"
-        className="heading p-3 bg-[#00a669] text-white rounded-md hover:bg-[#008b54] transition duration-200"
+        className="bg-[#00a669] text-white p-2 rounded w-full hover:bg-green-700 heading"
       >
         Submit
       </button>
