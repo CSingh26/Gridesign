@@ -1,36 +1,36 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { FaEnvelope, FaPhoneAlt, FaBars, FaTimes, FaCaretDown, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { FaEnvelope, FaPhoneAlt, FaBars, FaTimes, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa'
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true);
+        setIsScrolled(true)
       } else {
-        setIsScrolled(false);
+        setIsScrolled(false)
       }
-    };
+    }
 
     // Trigger scroll detection when the page loads
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
-  const navbarBackground = !isScrolled ? 'bg-transparent' : 'bg-white shadow-md';
+  const navbarBackground = !isScrolled ? 'bg-transparent' : 'bg-white shadow-md'
 
   return (
     <nav className={`navbar-fonts fixed top-0 left-0 w-full z-50 transition-all duration-300 ${navbarBackground}`}>
@@ -47,25 +47,7 @@ const Navbar = () => {
             <li><Link href="/">Home</Link></li>
             <li><Link href="/about">About</Link></li>
             <li><Link href="/services">Services</Link></li>
-            <li className="relative group">
-              <button className="flex items-center space-x-1 lg:space-x-2">
-                Contact
-                <FaCaretDown className="text-sm" />
-              </button>
-              <ul className="absolute mt-2 bg-white rounded-lg p-4 space-y-2 text-sm text-gray-700 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200">
-                <li className="flex items-center space-x-2">
-                  <FaPhoneAlt />
-                  <span>+91 990-990-8888</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <FaEnvelope />
-                  <span>hello@example.com</span>
-                </li>
-                <li>
-                  <Link href="/contact">Query Form</Link>
-                </li>
-              </ul>
-            </li>
+            <li><Link href="/contact">Contact</Link></li>
           </ul>
 
           <div className="hidden lg:flex space-x-6 lg:space-x-8 pl-4 lg:pl-8">
@@ -103,7 +85,6 @@ const Navbar = () => {
                     : `-translate-x-full opacity-0`
                 } hover:text-white hover:scale-110`}
               >
-                {/* Fix for Home Route */}
                 <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} onClick={toggleMenu}>
                   {item}
                 </Link>
@@ -113,7 +94,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
