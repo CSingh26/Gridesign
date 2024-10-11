@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 const ContactForm = () => {
   return (
@@ -28,7 +28,7 @@ const ContactForm = () => {
         Submit
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default ContactForm;
+export default ContactForm

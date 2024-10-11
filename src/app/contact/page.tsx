@@ -1,8 +1,9 @@
-"use client";
+"use client"
 
-import MapContainer from "../Component/ContactPageComponents/MapContainer";
-import ContactForm from "../Component/ContactPageComponents/ContactForm";
-import ContactInfo from "../Component/ContactPageComponents/ContactInfo";
+import MapContainer from "../Component/ContactPageComponents/MapContainer"
+import ContactForm from "../Component/ContactPageComponents/ContactForm"
+import ContactInfo from "../Component/ContactPageComponents/ContactInfo"
+import contactInfoData from "../../../public/data/contact.json"
 
 const ContactPage = () => {
   return (
@@ -10,7 +11,7 @@ const ContactPage = () => {
       <div className="w-full max-w-6xl mb-12 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Left side: Heading, Subheading, and Contact Details */}
-          <ContactInfo />
+          <ContactInfo contactInfo={contactInfoData} />
 
           {/* Right side: Contact Form */}
           <ContactForm />
@@ -22,7 +23,7 @@ const ContactPage = () => {
         <MapContainer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage
