@@ -1,0 +1,21 @@
+{
+    "heading": "Let's Talk",
+    "subHeading": "We would love to hear from you. Reach out to us through any of the options below.",
+    "contactDetails": [
+      {
+        "type": "phone",
+        "icon": "FaPhoneAlt",
+        "value": "+91 851-113-3277"
+      },
+      {
+        "type": "email",
+        "icon": "FaEnvelope",
+        "value": "purva@teamgridesign.com"
+      },
+      {
+        "type": "address",
+        "icon": "FaMapMarkerAlt",
+        "value": "A- 11th Floor Krish Cubical\nSindhu Bhawan Marg\nThaltej - Ahmedabad,\nGujarat - 380059"
+      }
+    ]
+}
