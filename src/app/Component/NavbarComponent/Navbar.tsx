@@ -76,7 +76,7 @@ const Navbar = () => {
             <FaTimes />
           </button>
           <ul className="text-[#000080] text-2xl space-y-6">
-            {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map((item, index) => (
+            {['Home', 'About', 'Services', 'Contact'].map((item, index) => (
               <li
                 key={item}
                 className={`transform transition-transform duration-500 ease-in-out ${
